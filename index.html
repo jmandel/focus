@@ -66,48 +66,19 @@
   </body>
   <script>
     const status = window.document.getElementById("status");
-    let words = [];
+    const focus = window.document.getElementById("focus");
 
-    (async function () {
-      const focus = window.document.getElementById("focus");
-      await fetch("focus.svg")
-        .then((v) => v.text())
-        .then((t) => {
-          focus.innerHTML = t;
-        });
-      await fetch("words.json")
-        .then((w) => w.json())
-        .then((w) => (words = w));
-      next();
-      const root = document.documentElement;
-      let focusTextSize = 5;
-      document.getElementById("eye-left").addEventListener("click", (e) => {
-        console.log("clic left", e.target);
-        focusTextSize /= 1.05;
-        root.style.setProperty("--focus-text-size", focusTextSize + "px");
-        e.preventDefault();
-      });
-
-      document.getElementById("eye-right").addEventListener("click", (e) => {
-        console.log("clic right", e.target);
-        focusTextSize *= 1.05;
-        root.style.setProperty("--focus-text-size", focusTextSize + "px");
-        e.preventDefault();
-      });
-    })();
-
-    let word = "";
-
-    function nextWord() {
-      word = words[Math.floor(Math.random() * words.length)].toUpperCase();
-    }
+    let words = ["focus"];
+    let word = words[0];
 
     function next() {
       nextWord();
       document.querySelectorAll("tspan").forEach((t) => t.setHTML(word));
     }
 
-    window.addEventListener("click", next);
+    function nextWord() {
+      word = words[Math.floor(Math.random() * words.length)].toUpperCase();
+    }
 
     const SpeechRecognition =
       window.SpeechRecognition || webkitSpeechRecognition;
@@ -129,13 +100,14 @@
     recognition.lang = "en-US";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
+
     recognition.addEventListener("result", (e) => {
-      console.log("R", e.results);
+      console.log("result", e.results);
       let detected = Array.from(e.results)
         .slice(-1)[0][0]
         .transcript.trim()
         .split(/\s/);
-      if (detected.length > 1) {
+      if (detected.length > 3) {
         detected = detected.map((w) => w[0]).join("");
       } else {
         detected = detected[0];
@@ -144,13 +116,12 @@
 
       if (detected.toUpperCase() === word.toUpperCase()) {
         status.innerText = `Correct: "${word.toUpperCase()}"`;
-        next();
         status.classList.remove("err");
       } else {
         status.innerText = `Expected "${word.toUpperCase()}", heard "${detected.toUpperCase()}".`;
         status.classList.add("err");
-        next();
       }
+      next();
     });
 
     recognition.addEventListener("end", (e) => {
@@ -162,8 +133,31 @@
     recognition.addEventListener("error", (e) => {
       console.log("error", e);
       // recognition.start();
-      status.innerText = `error: ${e}`;
+      status.innertext = `error: ${e.error}`;
     });
-    recognition.start();
+
+    (async function () {
+      focus.innerHTML = await fetch("focus.svg").then((v) => v.text());
+      words = await fetch("words.json").then((w) => w.json());
+
+      const root = document.documentElement;
+      let focusTextSize = 5;
+
+      window.addEventListener("click", next);
+      document.getElementById("eye-left").addEventListener("click", (e) => {
+        focusTextSize /= 1.05;
+        root.style.setProperty("--focus-text-size", focusTextSize + "px");
+        e.preventDefault();
+      });
+
+      document.getElementById("eye-right").addEventListener("click", (e) => {
+        focusTextSize *= 1.05;
+        root.style.setProperty("--focus-text-size", focusTextSize + "px");
+        e.preventDefault();
+      });
+
+      next();
+      recognition.start();
+    })();
   </script>
 </html>
