@@ -42,20 +42,24 @@
      id="layer1"
      transform="translate(-56.559664,-130.51959)">
     <circle
-       style="fill:#ffffff;fill-opacity:0.0501037;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
-       id="path115"
-       cx="73.375168"
-       cy="147.49535"
-       r="15.889462" />
+       style="fill:#aaaaaa;fill-opacity:0;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
+       id="path115-6-6"
+       cx="-111.06102"
+       cy="147.3351"
+       r="11.071218"
+       transform="scale(-1,1)" />
+
     <circle
        style="fill:#ffffff;fill-opacity:0.0501037;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
        id="path115-6"
        cx="72.273293"
        cy="147.49535"
        r="11.071218" />
+
+
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.12313;stroke-dasharray:none"
+       style="font-style:normal;font-weight:normal;font-size:var(--focus-text-size);line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.12313;stroke-dasharray:none"
        x="71.757561"
        y="149.43884"
        id="text1417"><tspan
@@ -64,23 +68,9 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;stroke-width:1.12313;stroke-dasharray:none"
          x="71.757561"
          y="149.43884">FOCUS</tspan></text>
-    <circle
-       style="fill:#aaaaaa;fill-opacity:0;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
-       id="path115-5"
-       cx="-109.95908"
-       cy="147.3351"
-       r="15.889462"
-       transform="scale(-1,1)" />
-    <circle
-       style="fill:#aaaaaa;fill-opacity:0;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
-       id="path115-6-6"
-       cx="-111.06102"
-       cy="147.3351"
-       r="11.071218"
-       transform="scale(-1,1)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:5px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.12313;stroke-dasharray:none"
+       style="font-style:normal;font-weight:normal;font-size:var(--focus-text-size);line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.12313;stroke-dasharray:none"
        x="110.54528"
        y="149.27859"
        id="text1417-1"><tspan
@@ -89,5 +79,19 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;stroke-width:1.12313;stroke-dasharray:none"
          x="110.54528"
          y="149.27859">FOCUS</tspan></text>
+    <circle
+       style="z-index: 2;fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
+       id="eye-left"
+       cx="73.375168"
+       cy="147.49535"
+       r="15.889462" />
+
+    <circle
+       style="fill:#aaaaaa;fill-opacity:0;stroke:#000000;stroke-width:1.85208;stroke-dasharray:none;stroke-opacity:1"
+       id="eye-right"
+       cx="-109.95908"
+       cy="147.3351"
+       r="15.889462"
+       transform="scale(-1,1)" />
   </g>
 </svg>
