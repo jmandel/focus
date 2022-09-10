@@ -18,7 +18,6 @@
 
       body {
         text-align: center;
-        padding: 1em;
         box-sizing: border-box;
         display: grid;
         grid-template-rows: auto 4em 2em;
@@ -30,6 +29,11 @@
         width: 100%;
         grid-column: 2;
         grid-row: 1;
+      }
+
+      #focus svg {
+        width: 100%;
+        height: auto;
       }
 
       #status {
@@ -127,7 +131,7 @@
     recognition.addEventListener("end", (e) => {
       console.log("end", e);
       recognition.start();
-      status.innerText = `end: ${e}`;
+      // status.innerText = `end: ${e}`;
     });
 
     recognition.addEventListener("error", (e) => {
@@ -141,19 +145,26 @@
       words = await fetch("words.json").then((w) => w.json());
 
       const root = document.documentElement;
+
+      const focusTextSizeLimit=[2.5,6.5];
       let focusTextSize = 5;
 
-      window.addEventListener("click", next);
+      window.addEventListener("click", (e) => {
+        if (e.target.closest("svg")) {
+          return;
+        }
+        next()
+      });
       document.getElementById("eye-left").addEventListener("click", (e) => {
         focusTextSize /= 1.05;
+        focusTextSize = Math.max(focusTextSize, focusTextSizeLimit[0]);
         root.style.setProperty("--focus-text-size", focusTextSize + "px");
-        e.preventDefault();
       });
 
       document.getElementById("eye-right").addEventListener("click", (e) => {
         focusTextSize *= 1.05;
+        focusTextSize = Math.min(focusTextSize, focusTextSizeLimit[1]);
         root.style.setProperty("--focus-text-size", focusTextSize + "px");
-        e.preventDefault();
       });
 
       next();
