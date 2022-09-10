@@ -26,6 +26,7 @@
       }
 
       #focus {
+        margin-top: 0.8cm;
         width: 100%;
         grid-column: 2;
         grid-row: 1;
@@ -40,10 +41,12 @@
         grid-row: 2;
         grid-column-start: 1;
         grid-column-end: 4;
-        line-height: 2;
         font-size: 2em;
         font-family: sans-serif;
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       #status.err {
@@ -64,8 +67,8 @@
     <!-- <object id="focus" data="focus.svg" type="image/svg+xml"></object> -->
     <div id="status"></div>
     <footer>
-      Source at
-      <a href="https://github.com/jmandel/focus">github.com/jmandel/focus</a>
+      Tap circles to adjust font. Source at
+      <a href="https://github.com/jmandel/focus">github.com/jmandel/focus</a>.
     </footer>
   </body>
   <script>
@@ -122,7 +125,7 @@
         status.innerText = `Correct: "${word.toUpperCase()}"`;
         status.classList.remove("err");
       } else {
-        status.innerText = `Expected "${word.toUpperCase()}", heard "${detected.toUpperCase()}".`;
+        status.innerText = `Expected "${word.toUpperCase()}", heard "${detected.toUpperCase()}"`;
         status.classList.add("err");
       }
       next();
@@ -146,14 +149,14 @@
 
       const root = document.documentElement;
 
-      const focusTextSizeLimit=[2.5,6.5];
+      const focusTextSizeLimit = [2.5, 6.5];
       let focusTextSize = 5;
 
       window.addEventListener("click", (e) => {
         if (e.target.closest("svg")) {
           return;
         }
-        next()
+        next();
       });
       document.getElementById("eye-left").addEventListener("click", (e) => {
         focusTextSize /= 1.05;
