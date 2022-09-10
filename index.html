@@ -81,6 +81,7 @@
     function next() {
       nextWord();
       document.querySelectorAll("tspan").forEach((t) => t.setHTML(word));
+      recognition.start();
     }
 
     function nextWord() {
@@ -103,7 +104,7 @@
     recognition.grammars = speechRecognitionList;
     console.log("grammar", grammar);
 
-    recognition.continuous = true;
+    recognition.continuous = false;
     recognition.lang = "en-US";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
@@ -171,7 +172,6 @@
       });
 
       next();
-      recognition.start();
     })();
   </script>
 </html>
